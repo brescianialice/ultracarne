@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ULTRA CARNE</title>
+  <meta name="description" content="ULTRA CARNE - Art publication and independent fanzine.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sticky Navigation Header with Hamburger Menu for Mobile -->
+  <nav class="nav-grid">
+    <div class="nav-header-line">
+      <a href="#section-hero" class="nav-cell logo">ULTRA CARNE</a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    
+    <div class="nav-menu" id="nav-menu">
+      <a href="#section-about" class="nav-cell">ABOUT</a>
+      <a href="#section-fanzine" class="nav-cell">FANZINE</a>
+      <a href="#section-videos" class="nav-cell">VIDEOS</a>
+      <a href="#section-monitors" class="nav-cell">MONITORS</a>
+      <a href="#section-event" class="nav-cell">EVENT</a>
+      <a href="#section-archive" class="nav-cell">ARCHIVE</a>
+      <a href="#section-contact" class="nav-cell">CONTACT</a>
+    </div>
+  </nav>
+
+  <!-- Fullscreen curtain wipe transition screen -->
+  <div id="transition-curtain"></div>
+
+  <!-- Unified stark grid layout -->
+  <main class="site-container">
+
+    <!-- 1. SECTION — ULTRA CARNE (Hero Opening) -->
+    <section id="section-hero" class="zine-section hero-section">
+      <div class="hero-header-box">
+        <h1>ULTRA CARNE</h1>
+      </div>
+      <!-- Seamless crossfading deck -->
+      <div class="hero-video-box" id="hero-video-deck">
+        <video id="hero-video-active" class="hero-video active" autoplay loop muted playsinline>
+          <source src="VIDEO ORIZZONTALI/net_art_montage.mp4" type="video/mp4">
+        </video>
+        <video id="hero-video-hidden" class="hero-video" loop muted playsinline></video>
+      </div>
+    </section>
+
+    <!-- 2. SECTION — ABOUT -->
+    <section id="section-about" class="zine-section">
+      <h2 class="section-title">ABOUT</h2>
+      
+      <div class="about-grid">
+        <div class="about-column">
+          <p class="about-text">
+            Ultra Carne è un archivio visivo dedicato alla trasformazione del corpo contemporaneo, al punto di collisione tra biologia, produttività e tecnologia. Il volume 00, intitolato Premature, si concentra su corpi esposti troppo presto alla logica della performance, dell'efficienza e del consumo: corpi già stanchi, deformati da un sistema che attraversa l'identità prima ancora che questa possa formarsi.
+          </p>
+          <p class="about-text">
+            La fanzine raccoglie immagini, frammenti e visioni che raccontano la fatica come condizione strutturale dell'esistenza contemporanea. Non c'è volontà documentaria neutrale né provocazione estetica fine a sé stessa: Ultra Carne osserva la mutazione del corpo come processo già in corso, inevitabile, materiale.
+          </p>
+          <p class="about-text">
+            In occasione della presentazione, il progetto esce dalla dimensione editoriale per trasformarsi in ambiente audiovisivo e performativo: uno spazio dove immagini e suono convivono come estensione della pubblicazione.
+          </p>
+        </div>
+        
+        <div class="about-column">
+          <p class="about-text">
+            Alice Zoe Bresciani esplora l’estetica del digitale intrecciando algoritmi, corpo e memoria. Specializzata in linguaggi algoritmici e intelligenza artificiale, utilizza la tecnologia come dispositivo per indagare la dimensione emotiva e politica del corpo.
+          </p>
+          <p class="about-text">
+            La sua pratica transmediale si articola tra illustrazione generativa, produzione video e progetti editoriali, integrando sistemi algoritmici all'interno dei processi creativi. All'attività artistica affianca una ricerca curatoriale focalizzata sulle politiche dell'identità: è fondatrice di Madri Digitali, progetto sulla rappresentazione del femminile post-umano, e ha curato la mostra "Fatti più in là: storie e lotte queer dal 1969 ad oggi".
+          </p>
+          <p class="about-text">
+            Il suo lavoro si configura come uno spazio critico per interrogare l’iper-sessualizzazione dei corpi e attivare memorie collettive, dando forma a nuove possibilità di rappresentazione e resistance identitaria.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SECTION — FANZINE -->
+    <section id="section-fanzine" class="zine-section">
+      <h2 class="section-title">FANZINE — VOL. 00</h2>
+      
+      <div class="fanzine-mockup-wrapper">
+        <div class="fanzine-book-container closed-cover" id="fanzine-book-container">
+          <!-- Interactive 3D leaves will be rendered here dynamically by JavaScript -->
+          <div class="fanzine-spine"></div>
+        </div>
+        
+        <div class="fanzine-arrows">
+          <button id="fanzine-prev" class="arrow-btn" aria-label="Previous">←</button>
+          <button id="fanzine-next" class="arrow-btn" aria-label="Next">→</button>
+        </div>
+      </div>
+      
+      <div class="purchase-button-box">
+        <button id="btn-acquista" class="btn-acquista">ACQUISTA — 10€</button>
+        <p class="purchase-note">* IMPORTANTE: Ricordati di specificare il tuo indirizzo e tutti i dettagli di spedizione nelle note di pagamento di PayPal.</p>
+      </div>
+    </section>
+
+    <!-- 3. SECTION — VIDEOS -->
+    <section id="section-videos" class="zine-section">
+      <h2 class="section-title">VIDEOS</h2>
+      
+      <div class="horizontal-videos-grid">
+        <div class="video-tile">
+          <video autoplay loop muted playsinline>
+            <source src="VIDEO ORIZZONTALI/net_art_montage.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-tile">
+          <video autoplay loop muted playsinline>
+            <source src="VIDEO ORIZZONTALI/Untitled(10)_muxed.mov" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-tile">
+          <video autoplay loop muted playsinline>
+            <source src="VIDEO ORIZZONTALI/FINAL_UNCANNY_BLACK.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SECTION — MONITORS -->
+    <section id="section-monitors" class="zine-section">
+      <h2 class="section-title">MONITORS</h2>
+      
+      <div class="crt-wall-grid">
+        <!-- Monitor 1 -->
+        <div class="crt-monitor">
+          <div class="monitor-cabinet">
+            <div class="monitor-screen-bezel">
+              <div class="monitor-crt-screen">
+                <video class="video-rotated-270" autoplay loop muted playsinline>
+                  <source src="VIDEO VERTICALI/export_schermo1_girato_senso1.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="monitor-glare"></div>
+            </div>
+          </div>
+          <div class="monitor-label">MONITOR 1</div>
+        </div>
+        
+        <!-- Monitor 2 -->
+        <div class="crt-monitor">
+          <div class="monitor-cabinet">
+            <div class="monitor-screen-bezel">
+              <div class="monitor-crt-screen">
+                <video class="video-rotated-270" autoplay loop muted playsinline>
+                  <source src="VIDEO VERTICALI/Sequenza 01.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="monitor-glare"></div>
+            </div>
+          </div>
+          <div class="monitor-label">MONITOR 2</div>
+        </div>
+        
+        <!-- Monitor 5 -->
+        <div class="crt-monitor">
+          <div class="monitor-cabinet">
+            <div class="monitor-screen-bezel">
+              <div class="monitor-crt-screen">
+                <video class="video-rotated-270" autoplay loop muted playsinline>
+                  <source src="VIDEO VERTICALI/schermo5_ruotato.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="monitor-glare"></div>
+            </div>
+          </div>
+          <div class="monitor-label">MONITOR 5</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SECTION — EVENT -->
+    <section id="section-event" class="zine-section">
+      <h2 class="section-title">EVENT — 27 MAGGIO 2026, CARRARA, VIA SAN MARTINO, 3</h2>
+      
+      <div class="event-photos-grid">
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01466.jpg')">
+          <img src="foto evento 27 maggio/DSC01466.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01467.jpg')">
+          <img src="foto evento 27 maggio/DSC01467.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01468 (1).jpg')">
+          <img src="foto evento 27 maggio/DSC01468 (1).jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01468.jpg')">
+          <img src="foto evento 27 maggio/DSC01468.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01475.jpg')">
+          <img src="foto evento 27 maggio/DSC01475.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01479.jpg')">
+          <img src="foto evento 27 maggio/DSC01479.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01480.jpg')">
+          <img src="foto evento 27 maggio/DSC01480.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01481.jpg')">
+          <img src="foto evento 27 maggio/DSC01481.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01483.jpg')">
+          <img src="foto evento 27 maggio/DSC01483.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01484.jpg')">
+          <img src="foto evento 27 maggio/DSC01484.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01486.jpg')">
+          <img src="foto evento 27 maggio/DSC01486.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01487.jpg')">
+          <img src="foto evento 27 maggio/DSC01487.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01490.jpg')">
+          <img src="foto evento 27 maggio/DSC01490.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01491.jpg')">
+          <img src="foto evento 27 maggio/DSC01491.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01492.jpg')">
+          <img src="foto evento 27 maggio/DSC01492.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01493.jpg')">
+          <img src="foto evento 27 maggio/DSC01493.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01501.jpg')">
+          <img src="foto evento 27 maggio/DSC01501.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01503.jpg')">
+          <img src="foto evento 27 maggio/DSC01503.jpg" alt="Event" loading="lazy">
+        </div>
+        <div class="photo-tile" onclick="openLightbox('foto evento 27 maggio/DSC01505.jpg')">
+          <img src="foto evento 27 maggio/DSC01505.jpg" alt="Event" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SECTION — ARCHIVE -->
+    <section id="section-archive" class="zine-section">
+      <h2 class="section-title">ARCHIVE</h2>
+      
+      <div class="archive-photos-grid">
+        <div class="archive-tile" onclick="openLightbox('foto rivista/DSC01320.jpg')">
+          <img src="foto rivista/DSC01320.jpg" alt="Archive" loading="lazy">
+        </div>
+        <div class="archive-tile" onclick="openLightbox('foto rivista/DSC01344.jpg')">
+          <img src="foto rivista/DSC01344.jpg" alt="Archive" loading="lazy">
+        </div>
+        <div class="archive-tile" onclick="openLightbox('foto rivista/DSC01374.jpg')">
+          <img src="foto rivista/DSC01374.jpg" alt="Archive" loading="lazy">
+        </div>
+        <div class="archive-tile" onclick="openLightbox('foto rivista/DSC01377.jpg')">
+          <img src="foto rivista/DSC01377.jpg" alt="Archive" loading="lazy">
+        </div>
+        <div class="archive-tile" onclick="openLightbox('IMMAGINI RIVISTA/UC14.png')">
+          <img src="IMMAGINI RIVISTA/UC14.png" alt="Archive" loading="lazy">
+        </div>
+        <div class="archive-tile" onclick="openLightbox('IMMAGINI RIVISTA/uc2.png')">
+          <img src="IMMAGINI RIVISTA/uc2.png" alt="Archive" loading="lazy">
+        </div>
+        <div class="archive-tile" onclick="openLightbox('IMMAGINI RIVISTA/uc8.png')">
+          <img src="IMMAGINI RIVISTA/uc8.png" alt="Archive" loading="lazy">
+        </div>
+        <div class="archive-tile" onclick="openLightbox('IMMAGINI RIVISTA/UC15.png')">
+          <img src="IMMAGINI RIVISTA/UC15.png" alt="Archive" loading="lazy">
+        </div>
+        <div class="archive-tile" onclick="openLightbox('IMMAGINI RIVISTA/UC16.png')">
+          <img src="IMMAGINI RIVISTA/UC16.png" alt="Archive" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. SECTION — CONTACT -->
+    <section id="section-contact" class="zine-section">
+      <h2 class="section-title">CONTACT</h2>
+      
+      <div class="contact-grid">
+        <a href="https://www.instagram.com/brescianialice" target="_blank" rel="noopener" class="contact-cell">INSTAGRAM</a>
+        <a href="https://github.com/brescianialice" target="_blank" rel="noopener" class="contact-cell">GITHUB</a>
+        <a href="mailto:alicezoebresciani02@gmail.com" class="contact-cell">EMAIL</a>
+        <button id="btn-request" class="contact-cell">ACQUISTA — 10€</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Stark Fullscreen Lightbox Image Inspection -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Enlarged view">
+  </div>
+
+  <!-- Minimal Black & White Purchase Form Modal Overlay -->
+  <div id="purchase-modal" class="purchase-modal">
+    <div class="modal-content">
+      <form id="purchase-form" autocomplete="off">
+        <div class="form-group">
+          <input type="email" id="form-email" placeholder="EMAIL" required>
+        </div>
+        <div class="form-group">
+          <input type="text" id="form-message" placeholder="MESSAGE" required>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="modal-submit-btn">ACQUISTA</button>
+          <button type="button" id="modal-close-btn" class="modal-close-btn">X</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# Video files
+VIDEO ORIZZONTALI/
+VIDEO VERTICALI/
+*.mp4
+*.mov
+*.avi
+
+# All image/media folders
+IMMAGINI PER SITO/
+IMMAGINI RIVISTA/
+foto rivista/
+foto evento 27 maggio/
+
+# Large files
+*.pdf
+*.JPG
+*.jpg
+*.png
+
+# Font folder
+Bernard MT Condensed Regular/
+
+# System files
+.DS_Store
+Thumbs.db
