@@ -1,24 +1,12 @@
-# Video files
+# Video files (too large even compressed)
 VIDEO ORIZZONTALI/
 VIDEO VERTICALI/
 *.mp4
 *.mov
 *.avi
 
-# All image/media folders
-IMMAGINI PER SITO/
-IMMAGINI RIVISTA/
-foto rivista/
-foto evento 27 maggio/
-
-# Large files
-*.pdf
-*.JPG
-*.jpg
-*.png
-
-# Font folder
-Bernard MT Condensed Regular/
+# Temp scripts
+compress_all.py
 
 # System files
 .DS_Store
