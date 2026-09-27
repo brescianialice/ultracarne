@@ -535,38 +535,49 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================================
-  // VIEWPORT-AWARE VIDEO PERFORMANCE OBSERVER (INTERSECTION OBSERVER)
+  // INSTANT AUTOPLAY & VIEWPORT VIDEO OBSERVER
   // ==========================================================================
-  function setupVideoPerformanceObserver() {
+  function initInstantAutoplayVideos() {
     const allVideos = document.querySelectorAll('video');
-    
-    // Pause offscreen loops to free up GPU decoder memory and prevent freezes
+
+    allVideos.forEach(video => {
+      video.muted = true; // Crucial for browser un-prompted autoplay permission
+      video.setAttribute('playsinline', '');
+      video.setAttribute('muted', '');
+      video.setAttribute('autoplay', '');
+      
+      // Attempt instant autoplay
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Retry playback on user interaction if power-saver blocked it
+        });
+      }
+    });
+
+    // Pause offscreen videos to optimize GPU performance, resume when visible
     const videoObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const video = entry.target;
-        
         if (entry.isIntersecting) {
-          // Play only when visible
+          video.muted = true;
           video.play().catch(() => {});
         } else {
-          // Pause offscreen videos immediately
           video.pause();
         }
       });
     }, {
-      root: null, // Screen viewport
-      threshold: 0.05 // Trigger when 5% or more is visible
+      root: null,
+      threshold: 0.01
     });
-    
+
     allVideos.forEach(video => {
       videoObserver.observe(video);
-      // Let observer handle autoplay triggers
-      video.removeAttribute('autoplay');
     });
   }
 
-  // Delay startup slightly to let initial page render settle
-  setTimeout(setupVideoPerformanceObserver, 200);
+  // Trigger instant autoplay immediately
+  initInstantAutoplayVideos();
 
   // ==========================================================================
   // LIGHTBOX INSPECTOR SYSTEM
