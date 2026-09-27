@@ -359,6 +359,201 @@ html, body {
 }
 
 /* ==========================================================================
+   2.5 SECTION — CONCEPT (LENIRE I DOLORI)
+   ========================================================================== */
+
+#section-concept {
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+}
+
+.concept-container {
+  padding: 60px 60px 80px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.concept-header-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 30px;
+}
+
+.concept-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 6px 16px;
+  background: #ffffff;
+  color: #000000 !important;
+  font-family: 'Bernard MT Condensed', sans-serif !important;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.concept-subtitle {
+  font-family: 'Bernard MT Condensed', sans-serif !important;
+  font-size: 38px;
+  letter-spacing: 8px;
+  font-weight: normal;
+  text-transform: uppercase;
+  color: #ffffff !important;
+  margin: 0;
+}
+
+.concept-exhibition {
+  font-family: 'Avenir', 'Segoe UI', sans-serif !important;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.6) !important;
+  line-height: 1.6;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.concept-column {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.concept-text {
+  font-family: 'Avenir', 'Segoe UI', sans-serif !important;
+  font-size: 14px;
+  line-height: 1.75;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 300;
+  text-align: justify;
+}
+
+.concept-text.highlight {
+  font-size: 15px;
+  color: #ffffff !important;
+  line-height: 1.8;
+  border-left: 2px solid #ffffff;
+  padding-left: 20px;
+}
+
+.concept-question {
+  font-family: 'Bernard MT Condensed', sans-serif !important;
+  font-size: 18px;
+  letter-spacing: 4px;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin: 15px 0;
+  text-transform: uppercase;
+}
+
+.concept-question span {
+  color: #ffffff !important;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.concept-credits-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.credits-item {
+  display: flex;
+  gap: 15px;
+  font-family: 'Avenir', 'Segoe UI', sans-serif !important;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.credits-label {
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-weight: 600;
+  min-width: 140px;
+}
+
+.credits-val {
+  color: #ffffff !important;
+  font-weight: 300;
+}
+
+.concept-actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-pdf-download {
+  display: inline-block;
+  padding: 16px 28px;
+  border: 1px solid #ffffff;
+  color: #ffffff !important;
+  font-family: 'Bernard MT Condensed', sans-serif !important;
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn-pdf-download:hover {
+  background: #ffffff;
+  color: #000000 !important;
+}
+
+@media (max-width: 768px) {
+  .concept-container {
+    padding: 40px 30px 60px 30px;
+    gap: 35px;
+  }
+
+  .concept-subtitle {
+    font-size: 28px;
+  }
+
+  .concept-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .concept-text {
+    font-size: 13px;
+    text-align: left;
+  }
+
+  .credits-item {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .credits-label {
+    min-width: auto;
+  }
+
+  .concept-actions {
+    flex-direction: column;
+  }
+
+  .btn-pdf-download {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
    3. SECTION — FANZINE (Tactile 3D Page-Flipping Book Mockup)
    ========================================================================== */
 
@@ -366,6 +561,60 @@ html, body {
   border-bottom: none;
   display: flex;
   flex-direction: column;
+}
+
+.fanzine-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-bottom: none;
+}
+
+.fanzine-section-header .section-title {
+  padding: 0;
+}
+
+.volume-selector-tabs {
+  display: flex;
+  gap: 15px;
+}
+
+.vol-tab {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.6) !important;
+  padding: 10px 20px;
+  font-family: 'Avenir', 'Segoe UI', sans-serif !important;
+  font-size: 11px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.vol-tab:hover {
+  border-color: #ffffff;
+  color: #ffffff !important;
+}
+
+.vol-tab.active {
+  background: #ffffff;
+  color: #000000 !important;
+  border-color: #ffffff;
+  font-weight: bold;
+}
+
+.page-counter-display {
+  font-family: 'Bernard MT Condensed', sans-serif !important;
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: rgba(255, 255, 255, 0.7) !important;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
 }
 
 .fanzine-mockup-wrapper {

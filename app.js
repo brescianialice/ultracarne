@@ -229,19 +229,38 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 12000);
 
   // ==========================================================================
-  // FANZINE MANUAL PAGES mockups turner (Dynamic 3D Flip Engine & Mobile Portrait Fallback)
+  // FANZINE MANUAL PAGES mockups turner (Dynamic 3D Flip Engine & Multi-Volume Support)
   // ==========================================================================
   const prevBtn = document.getElementById('fanzine-prev');
   const nextBtn = document.getElementById('fanzine-next');
   const bookContainer = document.getElementById('fanzine-book-container');
+  const pageCounterDisplay = document.getElementById('page-counter-display');
+  const fanzineTitleText = document.getElementById('fanzine-title-text');
   
-  const leavesCount = 24;
-  let currentLeaf = 0; // Desktop active sheet (0 to 24)
-  let currentMobilePage = 0; // Mobile active page (0 to 47)
+  const VOLUMES_DATA = {
+    1: {
+      title: 'FANZINE — VOL. 01 (LENIRE I DOLORI)',
+      folder: 'foto_rivista_vol1',
+      totalPages: 38,
+      leavesCount: 19
+    },
+    0: {
+      title: 'FANZINE — VOL. 00 (PREMATURE)',
+      folder: 'foto rivista',
+      totalPages: 48,
+      leavesCount: 24
+    }
+  };
+
+  let currentVolKey = 1; // Default to Vol 01
+  let currentLeaf = 0; // Desktop active sheet (0 to leavesCount)
+  let currentMobilePage = 0; // Mobile active page (0 to totalPages - 1)
   let isMobile = window.innerWidth <= 768;
 
   function setupBookDOM() {
     if (!bookContainer) return;
+    
+    const vol = VOLUMES_DATA[currentVolKey];
     
     // Preserve spine element, clear any dynamic leaves
     const spine = bookContainer.querySelector('.fanzine-spine');
@@ -254,28 +273,30 @@ document.addEventListener('DOMContentLoaded', () => {
       bookContainer.appendChild(newSpine);
     }
     
-    // Create 24 sheets (leaves) dynamically
-    for (let i = 0; i < leavesCount; i++) {
+    // Create sheets (leaves) dynamically based on active volume
+    for (let i = 0; i < vol.leavesCount; i++) {
       const leaf = document.createElement('div');
       leaf.className = 'book-leaf';
       leaf.id = `leaf-${i}`;
       
-      const frontSrc = `foto rivista/page_${String(i * 2).padStart(2, '0')}.jpg`;
-      const backSrc = `foto rivista/page_${String(i * 2 + 1).padStart(2, '0')}.jpg`;
+      const frontPageIdx = i * 2;
+      const backPageIdx = i * 2 + 1;
+      
+      const frontSrc = `${vol.folder}/page_${String(frontPageIdx).padStart(2, '0')}.jpg`;
+      const backSrc = backPageIdx < vol.totalPages ? `${vol.folder}/page_${String(backPageIdx).padStart(2, '0')}.jpg` : '';
       
       leaf.innerHTML = `
         <div class="leaf-side leaf-front">
-          <img data-src="${frontSrc}" alt="Page ${i * 2}">
+          <img data-src="${frontSrc}" alt="Page ${frontPageIdx}">
         </div>
         <div class="leaf-side leaf-back">
-          <img data-src="${backSrc}" alt="Page ${i * 2 + 1}">
+          ${backSrc ? `<img data-src="${backSrc}" alt="Page ${backPageIdx}">` : ''}
         </div>
       `;
       
       const frontSide = leaf.querySelector('.leaf-front');
       const backSide = leaf.querySelector('.leaf-back');
       
-      // Tap interactions directly on left/right half surfaces
       frontSide.addEventListener('click', (e) => {
         if (isMobile) {
           nextPageMobile();
@@ -297,8 +318,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function lazyLoadBookImages() {
+    const vol = VOLUMES_DATA[currentVolKey];
     const range = 2; // Preload current active leaf + 2 sheets forward and backward
-    for (let i = 0; i < leavesCount; i++) {
+    for (let i = 0; i < vol.leavesCount; i++) {
       if (Math.abs(i - currentLeaf) <= range) {
         const leaf = document.getElementById(`leaf-${i}`);
         if (!leaf) continue;
@@ -315,43 +337,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateBookState() {
     isMobile = window.innerWidth <= 768;
+    const vol = VOLUMES_DATA[currentVolKey];
     
     if (currentLeaf < 0) currentLeaf = 0;
-    if (currentLeaf > leavesCount) currentLeaf = leavesCount;
+    if (currentLeaf > vol.leavesCount) currentLeaf = vol.leavesCount;
     
     lazyLoadBookImages();
     
+    // Update Page Counter Display
+    if (pageCounterDisplay) {
+      if (isMobile) {
+        pageCounterDisplay.textContent = `PAG. ${currentMobilePage + 1} / ${vol.totalPages}`;
+      } else {
+        if (currentLeaf === 0) {
+          pageCounterDisplay.textContent = `COPERTINA / ${vol.totalPages}`;
+        } else if (currentLeaf === vol.leavesCount) {
+          pageCounterDisplay.textContent = `RETRO / ${vol.totalPages}`;
+        } else {
+          const p1 = currentLeaf * 2 - 1;
+          const p2 = currentLeaf * 2;
+          pageCounterDisplay.textContent = `PAG. ${p1}-${p2} / ${vol.totalPages}`;
+        }
+      }
+    }
+    
     if (!isMobile) {
       // DESKTOP: 3D spread layout
-      
-      // Toggle parent container shift classes to center single covers
       bookContainer.classList.remove('closed-cover', 'open-spread', 'closed-back');
       if (currentLeaf === 0) {
         bookContainer.classList.add('closed-cover');
-      } else if (currentLeaf === leavesCount) {
+      } else if (currentLeaf === vol.leavesCount) {
         bookContainer.classList.add('closed-back');
       } else {
         bookContainer.classList.add('open-spread');
       }
       
-      // Style page stacking and rotation angles
-      for (let i = 0; i < leavesCount; i++) {
+      for (let i = 0; i < vol.leavesCount; i++) {
         const leaf = document.getElementById(`leaf-${i}`);
         if (!leaf) continue;
         
-        // Clear mobile helper classes
         leaf.classList.remove('active-leaf');
         leaf.querySelector('.leaf-front').classList.remove('mobile-visible', 'mobile-hidden');
         leaf.querySelector('.leaf-back').classList.remove('mobile-visible', 'mobile-hidden');
         
         if (i < currentLeaf) {
-          // Leaf flipped to the left side
           leaf.style.transform = 'rotateY(-180deg)';
           leaf.style.zIndex = i;
         } else {
-          // Leaf stacked on the right side
           leaf.style.transform = 'rotateY(0deg)';
-          leaf.style.zIndex = leavesCount - i;
+          leaf.style.zIndex = vol.leavesCount - i;
         }
       }
     } else {
@@ -359,16 +393,15 @@ document.addEventListener('DOMContentLoaded', () => {
       bookContainer.classList.remove('closed-cover', 'open-spread', 'closed-back');
       
       if (currentMobilePage < 0) currentMobilePage = 0;
-      if (currentMobilePage > 47) currentMobilePage = 47;
+      if (currentMobilePage >= vol.totalPages) currentMobilePage = vol.totalPages - 1;
       
       const activeLeafIndex = Math.floor(currentMobilePage / 2);
       const isBackSide = (currentMobilePage % 2 === 1);
       
-      // Synchronize lazy loader focus
       currentLeaf = activeLeafIndex;
       lazyLoadBookImages();
       
-      for (let i = 0; i < leavesCount; i++) {
+      for (let i = 0; i < vol.leavesCount; i++) {
         const leaf = document.getElementById(`leaf-${i}`);
         if (!leaf) continue;
         
@@ -400,12 +433,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function nextSpreadDesktop() {
-    if (currentLeaf < leavesCount) {
+    const vol = VOLUMES_DATA[currentVolKey];
+    if (currentLeaf < vol.leavesCount) {
       currentLeaf++;
       playBeep(320, 0.08);
-      // Synchronize mobile page
-      if (currentLeaf === leavesCount) {
-        currentMobilePage = 47;
+      if (currentLeaf === vol.leavesCount) {
+        currentMobilePage = vol.totalPages - 1;
       } else {
         currentMobilePage = currentLeaf * 2 - 1;
       }
@@ -414,10 +447,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function prevSpreadDesktop() {
+    const vol = VOLUMES_DATA[currentVolKey];
     if (currentLeaf > 0) {
       currentLeaf--;
       playBeep(320, 0.08);
-      // Synchronize mobile page
       if (currentLeaf === 0) {
         currentMobilePage = 0;
       } else {
@@ -428,10 +461,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function nextPageMobile() {
-    if (currentMobilePage < 47) {
+    const vol = VOLUMES_DATA[currentVolKey];
+    if (currentMobilePage < vol.totalPages - 1) {
       currentMobilePage++;
       playBeep(320, 0.08);
-      // Synchronize desktop leaf
       currentLeaf = Math.floor((currentMobilePage + 1) / 2);
       updateBookState();
     }
@@ -441,11 +474,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentMobilePage > 0) {
       currentMobilePage--;
       playBeep(320, 0.08);
-      // Synchronize desktop leaf
       currentLeaf = Math.floor((currentMobilePage + 1) / 2);
       updateBookState();
     }
   }
+
+  // Volume Selector Tab Event Listeners
+  const volTabs = document.querySelectorAll('.vol-tab');
+  volTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const selectedVol = parseInt(tab.dataset.vol);
+      if (selectedVol === currentVolKey) return;
+      
+      initAudioEngine();
+      playBeep(520, 0.08);
+      
+      volTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      
+      currentVolKey = selectedVol;
+      const volData = VOLUMES_DATA[currentVolKey];
+      if (fanzineTitleText) {
+        fanzineTitleText.textContent = volData.title;
+      }
+      
+      currentLeaf = 0;
+      currentMobilePage = 0;
+      setupBookDOM();
+      updateBookState();
+    });
+  });
 
   if (prevBtn && nextBtn) {
     prevBtn.addEventListener('click', () => {
