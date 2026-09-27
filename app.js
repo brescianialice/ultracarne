@@ -42,9 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Horizontal video playlist mix
   const heroVideosList = [
-    'VIDEO ORIZZONTALI/net_art_montage.mp4',
-    'VIDEO ORIZZONTALI/Untitled(10)_muxed.mov',
-    'VIDEO ORIZZONTALI/FINAL_UNCANNY_BLACK.mp4'
+    'teaser_hero.mp4'
   ];
   let currentHeroIdx = 0;
 
