@@ -303,6 +303,54 @@ html, body {
   pointer-events: auto;
 }
 
+/* Hero CTA Overlay — centered above the video */
+.hero-cta-overlay {
+  position: absolute;
+  bottom: 12%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.hero-download-btn {
+  pointer-events: auto;
+  display: inline-block;
+  font-family: 'Avenir', 'Avenir Next', 'Montserrat', 'Segoe UI', Arial, sans-serif !important;
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #ffffff !important;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  padding: 16px 42px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.3s ease, border-color 0.3s ease, letter-spacing 0.3s ease;
+  cursor: pointer;
+}
+
+.hero-download-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
+  letter-spacing: 7px;
+}
+
+@media (max-width: 768px) {
+  .hero-cta-overlay {
+    bottom: 10%;
+  }
+  .hero-download-btn {
+    font-size: 10px;
+    letter-spacing: 4px;
+    padding: 14px 28px;
+  }
+}
+
 /* ==========================================================================
    2. SECTION — ABOUT (Dual-Column Art Manifesto & Biography)
    ========================================================================== */
