@@ -270,9 +270,9 @@ html, body {
   line-height: 1.0;
   letter-spacing: 12px;
   text-transform: uppercase;
-  color: #000000 !important; /* Pure black text superimposed over hero video */
+  color: #ffffff !important; /* Crisp pure white text */
   margin: 0;
-  text-shadow: none;
+  text-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
 }
 
 .hero-video-box {
