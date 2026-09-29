@@ -54,7 +54,9 @@
         <!-- QR Code overlay -->
         <div class="hero-qr-overlay">
           <div class="hero-qr-wrapper">
-            <div id="hero-qr-code"></div>
+            <a href="29 settembre/ultracarne_vol01_lenireidolori.pdf" target="_blank" rel="noopener" style="display:block;pointer-events:auto;">
+              <img src="qr_rivista.png" alt="QR Code rivista Ultra Carne Vol.01" class="hero-qr-img">
+            </a>
             <p class="hero-qr-label">SCAN TO READ</p>
           </div>
         </div>
@@ -315,18 +317,6 @@
 
 
 
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <script src="app.js"></script>
-  <script>
-    // Generate QR code pointing directly to the magazine PDF
-    new QRCode(document.getElementById('hero-qr-code'), {
-      text: 'https://brescianialice.github.io/ultracarne/29%20settembre/ultracarne_vol01_lenireidolori.pdf',
-      width: 120,
-      height: 120,
-      colorDark: '#ffffff',
-      colorLight: '#000000',
-      correctLevel: QRCode.CorrectLevel.H
-    });
-  </script>
 </body>
 </html>

@@ -372,11 +372,12 @@ html, body {
   padding: 16px;
 }
 
-/* qrcode.js renders a canvas or img — force white on black */
-.hero-qr-wrapper canvas,
-.hero-qr-wrapper img {
-  display: block !important;
-  background: #000000 !important;
+/* QR static PNG image */
+.hero-qr-img {
+  display: block;
+  width: 130px;
+  height: 130px;
+  image-rendering: pixelated;
 }
 
 .hero-qr-label {
