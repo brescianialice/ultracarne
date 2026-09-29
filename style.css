@@ -351,6 +351,59 @@ html, body {
   }
 }
 
+/* Hero QR Code overlay — bottom right corner */
+.hero-qr-overlay {
+  position: absolute;
+  bottom: 40px;
+  right: 50px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.hero-qr-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 16px;
+}
+
+/* qrcode.js renders a canvas or img — force white on black */
+.hero-qr-wrapper canvas,
+.hero-qr-wrapper img {
+  display: block !important;
+  background: #000000 !important;
+}
+
+.hero-qr-label {
+  font-family: 'Avenir', 'Avenir Next', 'Montserrat', 'Segoe UI', Arial, sans-serif !important;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: rgba(255, 255, 255, 0.6) !important;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .hero-qr-overlay {
+    bottom: 20px;
+    right: 20px;
+  }
+  .hero-qr-wrapper {
+    padding: 10px;
+  }
+  #hero-qr-code canvas,
+  #hero-qr-code img {
+    width: 80px !important;
+    height: 80px !important;
+  }
+}
+
 /* ==========================================================================
    2. SECTION — ABOUT (Dual-Column Art Manifesto & Biography)
    ========================================================================== */
